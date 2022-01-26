@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>좋아요 버튼</title>
+</head>
+
+<!-- // 뷰나 리엑트 싱글페이지 애플리케이션은 주소가 안바뀜
+        // 하나의 페이지로 화면을 바꿔바꿔감
+        // 데이터만 바꾸면 화면은 뷰가 알아서 바꿔준다
+        // 화면과 데이터를 일치시키는게 매우 중요하다
+        // 뷰나 리엑트로 개발하면 편해진다 -->
+<body>
+    <div id="root">
+        <!-- if else문은 붙어있어야함 -->
+        <div v-if="liked + 1 == true1">좋아요 눌렀음</div>
+        <button v-else v-on:click="onClickButton">like</button>
+        <div>깍두기</div>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#root',
+        
+        data:{
+            liked: false,
+        },
+        methods: {
+            onClickButton(){
+                this.liked = true;
+            },
+        },
+    });
+</script>
+</html>

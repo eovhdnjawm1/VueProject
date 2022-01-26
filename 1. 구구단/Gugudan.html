@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- vue 를 사용하는 cdn -->
+</head>
+
+<body>
+    <div id="root">
+        <div>{{firstData}}곱하기 {{secondsData}}는?</div>
+        <form v-on:submit="onSubmitForm">
+            <input type="number" v-model="inpData" ref="answer">
+            <!-- vue가 부르는 이름이 answer이다 -->
+            <button type="submit">제출</button>
+            <div id="result">{{ResData}}</div>
+        </form>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#root",
+            data: {
+                firstData: Math.ceil(Math.random() * 9),
+                secondsData: Math.ceil(Math.random() * 9),
+                inpData: '',
+                ResData: '',
+            },
+            methods: {
+                onSubmitForm(e){
+                    console.log(this);
+                    console.log(this.firstData, this.secondsData, this.inpData);
+                    e.preventDefault(); // 이걸하면 페이지 새로고침이 된다
+                    if(parseInt(this.firstData * this.secondsData) === parseInt(this.inpData)){
+                        this.ResData = "정답";
+                        this.firstData = Math.ceil(Math.random() * 9);
+                        this.secondsData = Math.ceil(Math.random() * 9);
+                        this.inpData = '';
+                        this.ResData = '정답 입니다 다음 문제를 풀어주세요';
+                        this.$refs.answer.focus();
+                    }else{
+
+                        this.ResData = "땡";
+                        this.$refs.answer.focus();
+                    }
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
